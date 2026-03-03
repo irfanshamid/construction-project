@@ -1,17 +1,3 @@
-# Glenigan AngularJS Project
-
-A clean, well-structured AngularJS 1.8.x application using TypeScript and Webpack. This project demonstrates a maintainable, component-based architecture suitable for legacy AngularJS applications.
-
-## Features
-
-- **AngularJS 1.8.x** with **TypeScript**
-- **Component-based architecture** (modern AngularJS style)
-- **Webpack** for building and bundling
-- **ngRoute** for client-side routing
-- **Mocked Data Service** simulating API calls
-- **Instant Filtering** and **Sorting**
-- **Responsive Design** with plain CSS
-
 ## Prerequisites
 
 - Node.js (v14 or higher recommended)
