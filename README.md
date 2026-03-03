@@ -20,9 +20,10 @@ A clean, well-structured AngularJS 1.8.x application using TypeScript and Webpac
 ## Installation
 
 1. Clone the repository (or extract the zip):
+
    ```bash
-   git clone <repository-url>
-   cd glenigan-angularjs-project
+   git clone https://github.com/irfanshamid/construction-project.git
+   cd construction-project
    ```
 
 2. Install dependencies:
@@ -39,9 +40,11 @@ A clean, well-structured AngularJS 1.8.x application using TypeScript and Webpac
 2. Open your browser and navigate to `http://localhost:8080`.
 
 To build for production:
+
 ```bash
 npm run build
 ```
+
 The output will be in the `dist/` directory.
 
 ## Project Structure
@@ -65,24 +68,31 @@ src/
 ## Design Decisions & Tradeoffs
 
 ### 1. Component-Based Architecture
+
 Instead of using the legacy `$scope` heavy controllers with `ng-controller`, this project uses `angular.component`. This aligns with modern Angular (2+) architecture, making future migration easier and promoting better separation of concerns.
 
 ### 2. TypeScript
+
 TypeScript is used to provide type safety, better tooling, and clearer interfaces for data models (e.g., `Project` interface). This reduces runtime errors and improves maintainability.
 
 ### 3. Webpack
+
 A minimal Webpack configuration is used to bundle the application. This allows us to use ES6 modules (`import`/`export`) and handle TypeScript compilation efficiently. It also enables importing HTML templates and CSS directly into the JavaScript bundle.
 
 ### 4. Plain CSS
+
 As requested, plain CSS is used instead of preprocessors (SASS/LESS) or frameworks (Bootstrap/Tailwind) to demonstrate core CSS skills and keep dependencies low. The CSS is scoped by class names to avoid collisions.
 
 ### 5. Mocked Data
+
 The `ProjectService` uses `$timeout` to simulate network latency, providing a realistic async behavior for the UI to handle (loading states).
 
 ## Filtering & Sorting Logic
 
 ### Filtering
+
 The application uses AngularJS's built-in `filter` filter for instant client-side filtering.
+
 - **Project Name**: Filters by partial match (case-insensitive).
 - **Area**: Filters by exact match from a dynamically generated dropdown list.
 - **Company**: Filters by exact match from a dynamically generated dropdown list.
@@ -90,7 +100,9 @@ The application uses AngularJS's built-in `filter` filter for instant client-sid
 The filtering happens instantly as the user types or selects an option, leveraging Angular's digest cycle.
 
 ### Sorting
+
 Projects are sorted using the `orderBy` filter:
+
 1. **Project Value (GBP)**: Descending (Highest value first).
 2. **Project Name**: Ascending (Alphabetical).
 
