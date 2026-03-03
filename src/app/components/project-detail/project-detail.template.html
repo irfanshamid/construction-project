@@ -1,0 +1,41 @@
+<div class="project-detail-container">
+    <div class="back-link">
+        <a ng-href="/">← Back to Projects</a>
+    </div>
+
+    <div class="loading-state" ng-if="$ctrl.loading">
+        <p>Loading project details...</p>
+    </div>
+
+    <div class="error-state" ng-if="!$ctrl.loading && !$ctrl.project">
+        <h3>Project Not Found</h3>
+        <p>The project you are looking for does not exist or has been removed.</p>
+    </div>
+
+    <div class="project-details" ng-if="$ctrl.project">
+        <h1>{{ $ctrl.project.project_name }}</h1>
+        
+        <div class="detail-section">
+            <div class="detail-row">
+                <strong>Company:</strong> <span>{{ $ctrl.project.company }}</span>
+            </div>
+            <div class="detail-row">
+                <strong>Area:</strong> <span>{{ $ctrl.project.area }}</span>
+            </div>
+            <div class="detail-row">
+                <strong>Start Date:</strong> <span>{{ $ctrl.project.project_start | date:'longDate' }}</span>
+            </div>
+            <div class="detail-row">
+                <strong>End Date:</strong> <span>{{ $ctrl.project.project_end | date:'longDate' }}</span>
+            </div>
+            <div class="detail-row">
+                <strong>Value:</strong> <span class="value">{{ $ctrl.project.project_value | currency:"£":0 }}</span>
+            </div>
+        </div>
+
+        <div class="description-section">
+            <h3>Description</h3>
+            <p>{{ $ctrl.project.description }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="project-list-container">
+    <h2>Projects</h2>
+
+    <div class="filters">
+        <div class="filter-group">
+            <label for="search">Search Project Name:</label>
+            <input type="text" id="search" ng-model="$ctrl.searchText" placeholder="Start typing..." class="form-control">
+        </div>
+
+        <div class="filter-group">
+            <label for="area">Filter by Area:</label>
+            <select id="area" ng-model="$ctrl.selectedArea" class="form-control">
+                <option value="">All Areas</option>
+                <option ng-repeat="area in $ctrl.areas" value="{{area}}">{{area}}</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="company">Filter by Company:</label>
+             <select id="company" ng-model="$ctrl.selectedCompany" class="form-control">
+                <option value="">All Companies</option>
+                <option ng-repeat="company in $ctrl.companies" value="{{company}}">{{company}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="project-table-wrapper">
+        <table class="project-table" ng-if="$ctrl.projects.length > 0">
+            <thead>
+                <tr>
+                    <th ng-click="$ctrl.setSort('project_name')">Project Name</th>
+                    <th ng-click="$ctrl.setSort('company')">Company</th>
+                    <th ng-click="$ctrl.setSort('project_start')">Start Date</th>
+                    <th ng-click="$ctrl.setSort('project_end')">End Date</th>
+                    <th ng-click="$ctrl.setSort('project_value')">Value (GBP)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="project in $ctrl.filteredProjects = ($ctrl.projects | filter:{project_name: $ctrl.searchText, area: $ctrl.selectedArea, company: $ctrl.selectedCompany} | orderBy:['-project_value', '+project_name'])">
+                    <td>{{ project.project_name }}</td>
+                    <td>{{ project.company }}</td>
+                    <td>{{ project.project_start | date:'mediumDate' }}</td>
+                    <td>{{ project.project_end | date:'mediumDate' }}</td>
+                    <td>{{ project.project_value | currency:"£":0 }}</td>
+                    <td>
+                        <a ng-href="/{{project.id}}" class="btn btn-primary">View</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="empty-state" ng-if="$ctrl.filteredProjects.length === 0 && !$ctrl.loading">
+            <p>No projects found</p>
+        </div>
+        
+        <div class="loading-state" ng-if="$ctrl.loading">
+            <p>Loading projects...</p>
+        </div>
+    </div>
+</div>
